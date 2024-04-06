@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas坐标轴</title>
+</head>
+<body>
+    <canvas id="bezierCanvas" width="400" height="400"></canvas>
+    <script>
+        var canvas = document.getElementById('bezierCanvas');
+        var ctx = canvas.getContext('2d');
+
+        // 绘制坐标轴
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(canvas.width, 0);
+        ctx.moveTo(0, 0);
+        ctx.lineTo(0, canvas.height);
+        ctx.stroke();
+
+        // 绘制刻度
+        var step = 20; // 刻度间隔
+        for (var i = 0; i <= canvas.height; i += step) {
+            ctx.beginPath();
+            ctx.moveTo(0, i);
+            ctx.lineTo(5, i);
+            ctx.stroke();
+
+            // 添加刻度值
+            i!=0?ctx.fillText(i, 10, i + 5):null;
+        }
+
+        for (var j = 0; j <= canvas.width; j += step) {
+            ctx.beginPath();
+            ctx.moveTo(j, 0);
+            ctx.lineTo(j, 5);
+            ctx.stroke();
+
+            // 添加刻度值
+            ctx.fillText(j, j - 5, 20);
+        }
+    </script>
+</body>
+</html>
